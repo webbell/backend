@@ -4,9 +4,17 @@ from freenit.api.methodviews import ProtectedMethodView, MethodView
 from freenit.schemas.paging import PageInSchema
 
 from ..models.medic import Medic
-from ..schemas.medic import MedicPageOutSchema, MedicSchema
+from ..schemas.medic import MedicPageOutSchema, MedicSchema, MedicCountSchema
 
 blueprint = Blueprint('medics', 'medics')
+
+
+@blueprint.route('/count', endpoint='count')
+class MedicCountAPI(MethodView):
+    @blueprint.response(MedicCountSchema)
+    def get(self):
+        """Medic count"""
+        return {'total': Medic.select().count()}
 
 
 @blueprint.route('', endpoint='list')
