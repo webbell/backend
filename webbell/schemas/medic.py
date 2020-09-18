@@ -4,6 +4,10 @@ from freenit.schemas.paging import PageOutSchema
 from marshmallow import fields
 
 
+class MedicCountSchema(BaseSchema):
+    total = fields.Integer(description='Count', dump_only=True)
+
+
 class MedicSchema(BaseSchema):
     id = fields.Integer(description='ID', dump_only=True)
     academic = fields.Str(description='Academic')
