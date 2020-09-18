@@ -1,7 +1,7 @@
 from flask_jwt_extended import jwt_required
 from flask_smorest import Blueprint, abort
 from freenit.api.methodviews import ProtectedMethodView, MethodView
-from freenit.schemas.paging import PageInSchema, paginate
+from freenit.schemas.paging import PageInSchema
 
 from ..models.medic import Medic
 from ..schemas.medic import MedicPageOutSchema, MedicSchema
@@ -15,7 +15,12 @@ class MedicListAPI(MethodView):
     @blueprint.response(MedicPageOutSchema)
     def get(self, pagination):
         """List medics"""
-        return paginate(Medic.select(), pagination)
+        query = Medic.select()
+        return {
+            'data': query,
+            'pages': 1,
+            'total': query.count(),
+        }
 
     @jwt_required
     @blueprint.arguments(MedicSchema)
