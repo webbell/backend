@@ -11,9 +11,9 @@ api = import_module(f'{app_name}.api')
 myapp = import_module(f'{app_name}')
 config_name = os.getenv('FLASK_ENV') or 'default'
 config = configs[config_name]
-app = create_app(config)
-myapp.create_app(app)
-api.create_api(app)
+application = create_app(config)
+myapp.create_app(application)
+api.create_api(application)
 hostname = socket.gethostname()
 port = os.environ.get('FLASK_PORT', 5000)
 SWAGGER_PATH = f'{config.OPENAPI_URL_PREFIX}{config.OPENAPI_SWAGGER_UI_PATH}'
@@ -21,7 +21,7 @@ SWAGGER_URL = f'http://{hostname}:{port}{SWAGGER_PATH}'
 
 if __name__ == '__main__':
     print(' * Swagger URL:', SWAGGER_URL)
-    app.run(
+    application.run(
         host='0.0.0.0',
         port=port,
         debug=True,
