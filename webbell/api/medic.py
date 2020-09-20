@@ -9,14 +9,6 @@ from ..schemas.medic import MedicPageOutSchema, MedicSchema, MedicCountSchema
 blueprint = Blueprint('medics', 'medics')
 
 
-@blueprint.route('/count', endpoint='count')
-class MedicCountAPI(MethodView):
-    @blueprint.response(MedicCountSchema)
-    def get(self):
-        """Medic count"""
-        return {'total': Medic.select().count()}
-
-
 @blueprint.route('', endpoint='list')
 class MedicListAPI(MethodView):
     @blueprint.arguments(PageInSchema(), location='headers')
@@ -73,3 +65,11 @@ class MedicAPI(ProtectedMethodView):
             abort(404, message='No such medic')
         medic.delete_instance()
         return medic
+
+
+@blueprint.route('/count', endpoint='count')
+class MedicCountAPI(MethodView):
+    @blueprint.response(MedicCountSchema)
+    def get(self):
+        """Medic count"""
+        return {'total': Medic.select().count()}
