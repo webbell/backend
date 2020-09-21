@@ -5,5 +5,5 @@ Model = db.Model
 
 
 class Social(Model):
-    city = TextField()
     name = TextField()
+    specialty = TextField()
