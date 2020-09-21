@@ -10,7 +10,7 @@ class SocialCountSchema(BaseSchema):
 
 class SocialSchema(BaseSchema):
     id = fields.Integer(description='ID', dump_only=True)
-    city = fields.Str(description='City')
+    specialty = fields.Str(description='Specialty')
     name = fields.Str(description='Name')
 
 

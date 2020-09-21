@@ -20,5 +20,4 @@ def migrate(migrator, database, fake=False, **kwargs):
 
 def rollback(migrator, database, fake=False, **kwargs):
     """Write your rollback migrations here."""
-
     migrator.remove_model('medic')
