@@ -15,7 +15,7 @@ class MedicListAPI(MethodView):
     @blueprint.response(MedicPageOutSchema)
     def get(self, pagination):
         """List medics"""
-        query = Medic.select()
+        query = Medic.select().order_by(Medic.name)
         return {
             'data': query,
             'pages': 1,

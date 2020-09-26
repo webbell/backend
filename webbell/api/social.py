@@ -19,7 +19,7 @@ class SocialListAPI(MethodView):
     @blueprint.response(SocialPageOutSchema)
     def get(self, pagination):
         """List socials"""
-        query = Social.select()
+        query = Social.select().order_by(Social.name)
         return {
             'data': query,
             'pages': 1,
