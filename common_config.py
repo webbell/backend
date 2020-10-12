@@ -46,12 +46,6 @@ class Config:
         #  'username': 'someone@example.com',
         #  'password': 'Sekrit',
     }
-    FROM_EMAIL = 'office@example.com'
-    SUBJECTS = {
-        'prefix': '[Freenit] ',
-        'confirm': 'Account confirmation',
-        'register': 'Account registration',
-    }
 
     @staticmethod
     def init_app(app):
